@@ -22,5 +22,5 @@ summarize_df(df)
 sum(df.side =='U'and df.order_id == 0) # trade type T is the same as side U and order_id 0
 
 mod_df = (df[df.book_event_type == 'M'])
-trade_df = (df[df.book_event_type == 'M'])
+trade_df = (df[df.book_event_type == 'T'])
 
