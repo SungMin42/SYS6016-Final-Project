@@ -3,9 +3,12 @@
 
 import pandas as pd
 import os
+import numpy as np
 
 os.chdir('C:\\Users\\alxgr\\Documents\\UVA\\DSI\\Spring 2019\\ML\\Project\\Repo ML Project\\SYS6016-Final-Project\\Code')
+#os.chdir("/Users/SM/DSI/classes/spring2019/SYS6016/FinalProject/SYS6016-Final-Project/code")
 df = pd.read_csv("../data/Data_Project-1-Prediction_Book_event_levelII_BAC_book_events_sip-nyse_2016-05-02.csv")
+
 df.head()
 
 def summarize_df(dataframe):
@@ -27,3 +30,15 @@ trade_df = (df[df.book_event_type == 'T'])
 sum(df.side=='U')
 sum(df.order_id == 0)
 sum(df.book_event_type == 'T')
+
+
+import seaborn as sb
+
+sb.lineplot(x=trade_df['timestamp'], y=trade_df['quantity'])
+sb.lineplot(x=trade_df['timestamp'], y=trade_df['price'])
+
+mod_df.groupby(['order_id', 'side']).count()
+
+
+
+
