@@ -14,11 +14,15 @@ from sklearn.metrics import roc_curve
 
 import matplotlib.pyplot as plt
 
+
+####################################################
+#==============Need to Configure this==============#
 X_train = None
 y_train = None
-
 X_test = None
 y_test = None
+#==================================================#
+####################################################
 
 logreg = LogisticRegression()
 logreg.fit(X_train, y_train)
