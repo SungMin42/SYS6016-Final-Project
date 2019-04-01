@@ -39,6 +39,8 @@ y_train, y_test = (y.iloc[0:cutoff , :].values.ravel() , y.iloc[cutoff: , :].val
 
 
 logreg = LogisticRegression(multi_class='ovr')
+# logreg = LogisticRegression(multi_class='multinomial', solver='lbfgs') # coeff did not converge for sag, newton-cg
+                                                                    # lbfgs also gives all one class
 logreg.fit(X_train, y_train)
 
 y_pred = logreg.predict(X_test)
