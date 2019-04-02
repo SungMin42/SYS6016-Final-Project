@@ -13,20 +13,20 @@ import matplotlib.pyplot as plt
 import math
 
 # df = pd.read_pickle('../data/price_level_total_view_2017-01-03_AAPL_grouped.txt') # v1
-df = pd.read_pickle('../data/price_level_total_view_2017-01-03_AAPL_grouped_1') # v2
-# df = pd.read_pickle('../data/price_level_total_view_2017-01-03_AAPL_grouped_2') # v3
+# df = pd.read_pickle('../data/price_level_total_view_2017-01-03_AAPL_grouped_1') # v2
+df = pd.read_pickle('../data/price_level_total_view_2017-01-03_AAPL_grouped_2') # v3
 # pd.set_option('display.max_columns', 8)
 # print(df)
 # list(df)
 # len(df) - df.count() # check na's for each feature
 
 def baseline_log(df, train_prop, multi = None):
-    X = df.loc[1:,['mid_price_log', 'trade_volume_differential', 'mid_price_log_differential_0_1', 'mid_price_log_differential_0_2', 'mid_price_log_differential_0_3', 'mid_price_log_differential_1_2', 'mid_price_log_differential_1_3', 'mid_price_log_differential_2_3', 'trade_volume_differential_0_1', 'trade_volume_differential_0_2', 'trade_volume_differential_0_3', 'trade_volume_differential_1_2', 'trade_volume_differential_1_3', 'trade_volume_differential_2_3']]
+    # X = df.loc[1:,['mid_price_log', 'trade_volume_differential', 'mid_price_log_differential_0_1', 'mid_price_log_differential_0_2', 'mid_price_log_differential_0_3', 'mid_price_log_differential_1_2', 'mid_price_log_differential_1_3', 'mid_price_log_differential_2_3', 'trade_volume_differential_0_1', 'trade_volume_differential_0_2', 'trade_volume_differential_0_3', 'trade_volume_differential_1_2', 'trade_volume_differential_1_3', 'trade_volume_differential_2_3']]
     # ^ this was for v2 features, below is v3
-    # X = df.loc[:,['mid_price_log', 'trade_volume_differential', 'mid_price_log_direction_0_1', 'mid_price_log_direction_0_2', 'mid_price_log_direction_0_3', 'mid_price_log_direction_0_4', 'mid_price_log_direction_0_5', 'mid_price_log_direction_0_6', 'trade_volume_differential_direction_0_1', 'trade_volume_differential_direction_0_2', 'trade_volume_differential_direction_0_3', 'trade_volume_differential_direction_0_4', 'trade_volume_differential_direction_0_5', 'trade_volume_differential_direction_0_6']]
+    X = df.loc[:,['mid_price_log', 'trade_volume_differential', 'mid_price_log_direction_0_1', 'mid_price_log_direction_0_2', 'mid_price_log_direction_0_3', 'mid_price_log_direction_0_4', 'mid_price_log_direction_0_5', 'mid_price_log_direction_0_6', 'trade_volume_differential_direction_0_1', 'trade_volume_differential_direction_0_2', 'trade_volume_differential_direction_0_3', 'trade_volume_differential_direction_0_4', 'trade_volume_differential_direction_0_5', 'trade_volume_differential_direction_0_6']]
 
-    y = df.loc[1:,'target'] # had to filter out first row in v2, shouldn't in v3
-    # y = df.loc[:,'target']
+    # y = df.loc[1:,'target'] # had to filter out first row in v2, shouldn't in v3
+    y = df.loc[:,'target']
     pd.value_counts(y)
     n = X.shape[0]
     cutoff = math.floor(n *train_prop)
@@ -48,7 +48,7 @@ def baseline_log(df, train_prop, multi = None):
         logreg = LogisticRegression(solver='lbfgs', max_iter=500)
 
     print('Set-up complete')
-    # print(np.any(np.isfinite(X_train)), np.any(np.isnan(X_train)))
+    print(np.any(np.isfinite(X_train)), np.any(np.isnan(X_train)))
 
     logreg.fit(X_train, y_train)
 
