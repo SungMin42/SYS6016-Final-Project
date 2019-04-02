@@ -48,6 +48,11 @@ def baseline_log(df, multi = None):
     print("\n\n\n===Confusion Matrix===\n",confuse,"\n\n")
     print(classification_report(y_test, y_pred))
 
+    y_prob = logreg.predict_proba(X_test)
+    y_prob = pd.DataFrame(y_prob)
+    print(y_prob)
+    # y_prob.to_string()
+
 
 
 
