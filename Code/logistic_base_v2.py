@@ -75,9 +75,9 @@ baseline_log(df, train_prop= .8, multi = True)
 
 
 # get rid of one class (the original caused class imbalance) --> trying to test difference
-# df2=df[df['target']!=1]
-# df2['target'].value_counts()
-# baseline_log(df2, .8, False)
+df2=df[df['target']!=1]
+df2['target'].value_counts()
+baseline_log(df2, .8, False)
 
 # this gets ~ 89% using the second version of our feature set
 # so our model is good at predicting when we are limiting it to either upwards or downwards movement
