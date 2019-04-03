@@ -49,6 +49,11 @@ def baseline_log(df, train_prop, multi = None):
 
     print('Set-up complete')
     print(np.any(np.isfinite(X_train)), np.any(np.isnan(X_train)))
+    # y_train_values, y_train_counts = np.unique(y_train, return_counts=True)
+    # y_test_values, y_test_counts = np.unique(y_test, return_counts=True)
+
+    # print(y_train_values,y_train_counts)
+    # print(y_test_values,y_test_counts)
 
     logreg.fit(X_train, y_train)
 
