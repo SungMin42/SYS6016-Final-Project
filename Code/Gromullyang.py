@@ -332,8 +332,7 @@ class FFNN(NN_Models):
         return features, labels, tr_init, te_init, n_inputs, training_op, output, loss, accuracy
 
 
-    def get_hyperparameters(self, train_array):
-        batch_size = 100
+    def get_hyperparameters(self, train_array, batch_size=100):
         train_n = trainarray.shape[0]
         test_n = testarray.shape[0]
         n_batches = train_n // batch_size
@@ -542,14 +541,13 @@ class CNN(NN_Models):
         return trainarray, labelarray, testarray, testlabelarray
 
 
-    def get_hyperparameters(self, trainarray):
+    def get_hyperparameters(self, trainarray, batch_size=400):
         train_n = trainarray.shape[0]
         test_n = testarray.shape[0]
         height = trainarray.shape[1]
         width = trainarray.shape[2]
         n_inputs = height*width
 
-        batch_size = 400
         n_batches = train_n // batch_size
         n_batches_test = test_n // batch_size
 
@@ -710,11 +708,9 @@ class RNN(NN_Models):
         
         return training_op, loss, accuracy, init, X, labels, Y_proba, value_, tl, ta, vl, va
 
-        def windower(self, trainarray, labelarray, testarray, testlabelarray, batch_size, window_size):
+        def windower(self, trainarray, labelarray, testarray, testlabelarray, batch_size=100, window_size=10):
             from numpy.lib.stride_tricks import as_strided
 
-            window_size = 10
-            batch_size = 100
             x, y, n_batches, n_train = batch_data(trainarray, labelarray, batch_size, window_size)
             x_val, y_val, n_batches_val, n_test  = batch_data(testarray, testlabelarray, batch_size, window_size)
 
